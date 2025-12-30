@@ -135,7 +135,7 @@ This repository contains Python scripts for processing MongoDB data, specificall
 
 ### MongoDB Connection
 All scripts use the same MongoDB Atlas connection:
-- **URI**: `mongodb+srv://dqmetrics:...@owler.afztv.mongodb.net/owler`
+- **URI**: `mongodb+srv://dqmetrics`
 - **Database**: `owler`
 - **Collections**: `company`, `cp_task`
 - **SSL/TLS**: Uses `certifi` for certificate verification
