@@ -1,5 +1,3 @@
-# cp_task_scripts
-
 # MongoDB Data Processing Scripts
 
 This repository contains Python scripts for processing MongoDB data, specifically for company information management and task status updates.
@@ -12,11 +10,15 @@ This repository contains Python scripts for processing MongoDB data, specificall
 **Key Features**:
 - Connects to MongoDB `owler` database
 - Queries `cp_task` collection
-- Filters by `status: "OPEN"` and `task_type` (configurable)
+- Filters by `status: "OPEN"` and `task_type`
+- Interactive input prompts:
+  - **task_type** (required): Task type to export (automatically uppercase)
+  - **limit** (optional): Maximum records to fetch (default: 10,000)
 - Exports company_id list to CSV file
-- Uses configurable LIMIT for result set size
+- Displays total execution time
 
-**Output**: CSV file with format: `{TASK_TYPE}_{LIMIT}.csv` containing company IDs
+**Output**: CSV file with format: `{TASK_TYPE}_{ACTUAL_COUNT}.csv` containing company IDs
+- Example: `NAMES_3176.csv` (3,176 records exported)
 
 **Use Case**: Extract company IDs for specific open tasks (e.g., DESCRIPTION, LINKS, CEO, etc.)
 
@@ -49,9 +51,9 @@ This repository contains Python scripts for processing MongoDB data, specificall
 - Interactive file selection from available input files
 - Exports results to `Output_CSV` directory
 
-**Input Directory**: `/Users/deepan.muthusamy/Documents/CP_TASK/CSV_Reports/Input_CSV`
+**Input Directory**: `CSV_Reports/Input_CSV`
 
-**Output Directory**: `/Users/deepan.muthusamy/Documents/CP_TASK/CSV_Reports/Output_CSV`
+**Output Directory**: `CSV_Reports/Output_CSV`
 
 **Output Format**: `{input_filename}_output_{timestamp}.csv` with columns: `_id`, `short_name`
 
@@ -69,7 +71,7 @@ This repository contains Python scripts for processing MongoDB data, specificall
 - Replaces spaces with hyphens in company names
 - Interactive file selection
 
-**Input Directory**: `/Users/deepan.muthusamy/Documents/CP_TASK/CSV_Reports/Output_CSV`
+**Input Directory**: `CSV_Reports/Output_CSV`
 
 **Output Format**: `{input_filename}_with_urls_{timestamp}.csv` with columns: `_id`, `short_name`, `profile_url`
 
@@ -134,11 +136,13 @@ This repository contains Python scripts for processing MongoDB data, specificall
 ## Configuration
 
 ### MongoDB Connection
-All scripts use the same MongoDB Atlas connection:
-- **URI**: `mongodb+srv://dqmetrics`
+All scripts use MongoDB Atlas connection:
+- **URI**: `mongodb+srv://<USERNAME>:<PASSWORD>@<HOST>/<DATABASE>`
 - **Database**: `owler`
 - **Collections**: `company`, `cp_task`
 - **SSL/TLS**: Uses `certifi` for certificate verification
+
+**Note**: Configure your MongoDB URI in each script before running.
 
 ### Directory Structure
 ```
@@ -182,4 +186,4 @@ pip install pymongo certifi
 ## Author
 Created for MongoDB data processing and company information management.
 
-**Last Updated**: December 30, 2025
+**Last Updated**: December 31, 2025
